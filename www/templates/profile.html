@@ -1,10 +1,11 @@
-<ion-view title="Profile" id="Profile" style="">
+<ion-view title="Profile" id="profile" style="">
     
   <ion-content padding="true" class="has-header">
     <div class="list card" id="profile-card21" ng-controller="profileCtrl">
       <ion-item class="item-avatar balanced" id="profile-list-item13">
-          <h2balanced>{{firstname}} {{lastname}}
-          <p>dave2017</p>
+          <img src="{{ProfilePicture}}" style="border:1px solid white;border-radius:50%;display: block; width: 50%; height: auto; margin-left: auto; margin-right: auto;">
+          <h2balanced>{{FirstName}} {{LastName}}
+          <p>{{Username}}</p>
         </h2balanced>
       </ion-item>
     <form id="profile-form8" class="list">
@@ -14,15 +15,16 @@
     <div class="spacer" style="width: 300px; height: 17px;"></div>
     <ion-list id="profile-list6">
       <ion-item class="item-icon-left dark" id="profile-list-item11">
-        <i class="icon ion-android-star-outline"></i>1,250
+        <i class="icon ion-android-star-outline"></i>{{Points}}
         <span class="item-note">points</span>
       </ion-item>
     </ion-list>
     <div class="spacer" style="width: 300px; height: 17px;"></div>
-    <h4 id="profile-heading6" style="color:#000000;text-align:center;">Ranking</h4>
+    <h4 id="profile-heading6" style="color:#000000;text-align:center;">Friends</h4>
     <ion-list id="profile-list7" ui-sref="tabsController.leaderboard">
       <ion-item class="item-icon-left dark" id="profile-list-item12" ui-sref="tabsController.leaderboard">
-        <i class="icon ion-ribbon-a"></i>16 </ion-item>
+        <i class="icon ion-ribbon-a"></i>Friend List</ion-item>
     </ion-list>
+    <a id="login-button9" class="button button-stable  button-block" style="background-color:green;color:white" ng-click="logout()">Log out</a>
   </ion-content>
 </ion-view>
