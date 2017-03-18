@@ -62,8 +62,7 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
     $timeout( function(){
-        alert("Dave");
-        $window.location.href = '#/main/home';
+        $window.location.href = '#/friendRequest';
     }, 2000)
 }])
 
