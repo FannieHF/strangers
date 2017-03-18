@@ -1,5 +1,0 @@
-{
-  "name": "theStrangers",
-  "app_id": "",
-  "gulpStartupTasks":["sass","watch"]
-}
