@@ -61,6 +61,13 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
+	alert('missionCompleteCtrl');
+
+	// $scope.uid = 'UkwyGH8cDCQZHHyqGi2Z9tYGBSX2';
+	// var prevScore = firebase.database().ref('users/' + $scope.uid + '/Points');
+	// var newScore = 
+	// var database = firebase.database();
+
     $timeout( function(){
         $window.location.href = '#/friendRequest';
     }, 2000)
