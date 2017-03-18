@@ -4,7 +4,7 @@ angular.module('app.controllers', [])
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	alert("menuCtrl");
+	
 
 }])
    
@@ -12,7 +12,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	alert("helloWorldCtrl");
+	
 
 }])
    
@@ -20,8 +20,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	alert('signUpCtrl');
-
+	
 
 }])
    
@@ -55,7 +54,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	alert('missionCtrl');
+	
 
 }])
    
@@ -63,7 +62,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	alert('leaderboardCtrl');
+	
 
 }])
    
@@ -71,7 +70,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	alert('pageCtrl');
+	
 
 }])
    
@@ -79,7 +78,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
-	alert('missionCompleteCtrl');
+	
 
 	var scoreObtained = 800; // will be some function later; 
 
@@ -109,14 +108,14 @@ function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 
 function ($scope, $stateParams) {
-	alert('loginCtrl');
+	
 }])
    
 .controller('homeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	alert('homeCtrl');
+	
 	
 
 }])
@@ -126,7 +125,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope,$stateParams) {
-	alert('profileCtrl');
+	
 
 	// // Get user id
 	// var user = firebase.auth().currentUser;
@@ -172,14 +171,14 @@ function ($scope,$stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	alert('friendRequestCtrl');
+	
 }])
    
 .controller('resourceCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	alert('resourceCtrl');
+	
 
 }])
  
