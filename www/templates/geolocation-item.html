@@ -1,0 +1,18 @@
+<ion-view title="Geolocation">
+    <ion-content class="has-header">
+            <button class="button button-block button-outline button-positive" ng-click="getCurrentPosition()">
+                Get Current Position!
+            </button>
+            <div ng-show="currentPosition">
+                <div>
+                    <div class="text-center"><i class="icon ion-ios7-navigate positive"></i></div>
+                    <div class="text-center">Lat. {{currentPosition.coords.latitude}},
+                        Long. {{currentPosition.coords.longitude}}</div>
+                </div>
+                <div class="padding-top">
+                    <div class="text-center"><i class="icon ion-ios7-time positive"></i></div>
+                    <div class="text-center">Last Update: {{currentPosition.timestamp}}</div>
+                </div>
+        </div>
+    </ion-content>
+</ion-view>
