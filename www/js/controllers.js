@@ -109,16 +109,15 @@ function ($scope, $stateParams, $window) {
 
     $scope.login = function(){
       
-      $window.location.href = '#/main/home';
-//        firebase.auth().signInWithEmailAndPassword($scope.data.Email, $scope.data.Password)
-//        .then(function(firebaseUser){
-//            $window.location.href = '#/main/home';
-//        })
-//        .catch(function(error) {
-//        // Handle Errors here.
-//            alert(error.code);
-//            $window.location.href = '#/main/login';
-//        });
+       firebase.auth().signInWithEmailAndPassword($scope.data.Email, $scope.data.Password)
+       .then(function(firebaseUser){
+           $window.location.href = '#/main/home';
+       })
+       .catch(function(error) {
+       // Handle Errors here.
+           alert(error.code);
+           $window.location.href = '#/main/login';
+       });
     }
 }])
 
@@ -177,6 +176,19 @@ function ($scope,$stateParams) {
     Rank.on('value', function(snapshot) {
         $scope.Rank = snapshot.val();
     });
+
+    $scope.logout = function(){
+      
+       firebase.auth().signOut()
+       .then(function(){
+           alert("You've been logged out")
+       })
+       .catch(function(error) {
+       // Handle Errors here.
+           alert("failed to logout" + error.code);
+           $window.location.href = '#/main/profile';
+       });
+    }
     
 }])
 
