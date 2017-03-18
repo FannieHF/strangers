@@ -1,4 +1,5 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers', [ 'cordovaGeolocationModule'])
+
      
 .controller('menuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -36,8 +37,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
-
+    
 }])
    
 .controller('leaderboardCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -45,14 +45,12 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
-
 }])
    
 .controller('pageCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
 
 }])
    
@@ -71,14 +69,18 @@ function ($scope,$timeout, $window,$stateParams) {//10 seconds delay
 function ($scope, $stateParams) {
 
 }])
-   
-.controller('homeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-    
 
-}])
+.controller('homeCtrl', function ($scope,$stateParams, cordovaGeolocationService) {
+        $scope.getCurrentPosition = function () {
+        cordovaGeolocationService.getCurrentPosition(successHandler);
+    };
+    var successHandler = function (position) {
+        $scope.currentPosition = position;
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var timestamp = position.timestamp;
+    };
+})
    
 .controller('profileCtrl', ['$scope','$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -101,6 +103,5 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
-
 }])
- 
+
