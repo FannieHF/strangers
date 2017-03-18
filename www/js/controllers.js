@@ -30,6 +30,22 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
+	// // Get user id
+	// var user = firebase.auth().currentUser;
+	$scope.uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3';
+
+	// if (user != null) {
+	//   $scope.uid = user;
+	// }
+
+	// Get a reference to the database service
+	var database = firebase.database();
+
+	// Get user profile info
+	var Points = firebase.database().ref('users/' + $scope.uid + '/Points');
+	Points.on('value', function(snapshot) {
+		$scope.Points = snapshot.val();
+	});
 
 }])
    
@@ -63,7 +79,7 @@ function ($scope, $stateParams) {
 function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
     $timeout( function(){
         $window.location.href = '#/friendRequest';
-    }, 2000)
+    }, 8000)
 }])
 
 .controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
