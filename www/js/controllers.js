@@ -37,7 +37,7 @@ function ($scope, $stateParams) {
 	// if (user != null) {
 	//   $scope.uid = user;
 	// }
-	
+
 
 	// Get a reference to the database service
 	var database = firebase.database();
