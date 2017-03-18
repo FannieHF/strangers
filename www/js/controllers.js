@@ -32,7 +32,8 @@ function ($scope, $stateParams) {
 
     // // Get user id
     // var user = firebase.auth().currentUser;
-    $scope.uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3';
+    var user = firebase.auth().currentUser;
+   	$scope.uid = user.uid;
 
     // if (user != null) {
     //   $scope.uid = user;
