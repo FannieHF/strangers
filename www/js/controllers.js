@@ -23,7 +23,6 @@ function ($scope, $stateParams) {
 function ($scope, $stateParams) {
 
 
-
 }])
    
 .controller('newChallengeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -71,12 +70,12 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
-
 }])
    
 .controller('missionCompleteCtrl', ['$scope','$timeout','$window','$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
+<<<<<<< HEAD
 function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
 	
 	var scoreObtained = 800; // will be some function later; 
@@ -101,12 +100,19 @@ function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
         $window.location.href = '#/friendRequest';
     }, 8000)
 
+=======
+function ($scope,$timeout, $window,$stateParams) {//10 seconds delay
+    $timeout( function(){
+        $window.location.href='#/main/friendRequest';
+    }, 2000)
+>>>>>>> master
 }])
 
 .controller('loginCtrl', ['$scope', '$window','$stateParams'// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 
+<<<<<<< HEAD
 function ($scope, $window, $stateParams) {
 	 $scope.validationEvent = function(){
 	 	// '$scope.data.username'
@@ -135,6 +141,10 @@ function ($scope, $window, $stateParams) {
 }
 }])
 
+=======
+}])
+
+>>>>>>> master
 .controller('homeCtrl', function ($scope,$stateParams, cordovaGeolocationService) {
         $scope.getCurrentPosition = function () {
         cordovaGeolocationService.getCurrentPosition(successHandler);
@@ -151,6 +161,7 @@ function ($scope, $window, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope,$stateParams) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	
 
@@ -192,6 +203,10 @@ function ($scope,$stateParams) {
 		$scope.Rank = snapshot.val();
 	});
 
+=======
+    $scope.firstname = "Dave";
+    $scope.lastname = "Snave";
+>>>>>>> master
 }])
 
 
