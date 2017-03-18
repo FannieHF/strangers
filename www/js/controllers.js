@@ -82,11 +82,35 @@ function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
     }, 8000)
 }])
 
-.controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$window','$stateParams'// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $window, $stateParams) {
+	 $scope.validationEvent = function(){
+	 	// '$scope.data.username'
+	 	// '$scope.data.password'
 
+	 // firebase.auth().signInWithEmailAndPassword('what' ,'why' ).catch(function(error) {
+
+        
+  //     // var errorCode = error.code;
+  //     var errorCode = error.code;
+	 //  alert(error.message);
+		// //console.log(error);
+  // 	  $window.location.href = '#/main/home';
+  //   	}
+  // 	);		
+
+
+ 
+	// // 	var authData = $scope.authObj.$getAuth();
+
+	// // if (authData) {
+	// //   console.log("Logged in as:", authData.uid);
+	// // } else {
+	// //   console.log("Logged out");
+	// // }
+}
 }])
    
 .controller('homeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
