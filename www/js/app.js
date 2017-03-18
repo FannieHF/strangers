@@ -81,5 +81,13 @@ angular.module('app', ['ionic', 'firebase', 'app.controllers', 'app.routes', 'ap
       });
     }
   };
-});
+})
+
+.state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+})
+
+;
 

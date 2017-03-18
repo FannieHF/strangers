@@ -20,6 +20,10 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
+
+	var newbiePPic = 'https://firebasestorage.googleapis.com/v0/b/strangers-7479e.appspot.com/o/just%20right.jpg?alt=media&token=22b16afd-5f66-4bad-aa20-548d06838a5b';
+	var newRankLoc = firebase.database().ref('latest/Score/');
+
 	
 
 }])
@@ -102,12 +106,25 @@ function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
     }, 8000)
 }])
 
-.controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$stateParams', '$window', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 
-function ($scope, $stateParams) {
-	
+function ($scope, $stateParams, $window) {
+	$scope.data = {};
+
+	$scope.login = function(){
+		firebase.auth().signInWithEmailAndPassword($scope.data.username, $scope.data.password)
+		.then(function(firebaseUser){
+  			$window.location.href = '#/main/home';
+  		})
+  		.catch(function(error) {
+		// Handle Errors here.
+			alert(error.code);
+			$window.location.href = '#/main/login';
+		});
+
+	}
 }])
    
 .controller('homeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
