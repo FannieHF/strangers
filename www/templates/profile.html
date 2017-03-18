@@ -1,24 +1,29 @@
-<ion-view title="Profile" id="page19" style="">
-    
+<ion-view title="Profile" id="page19">
   <ion-content padding="true" class="has-header">
-    <div class="list card" id="profile-card21" ng-controller="profileCtrl">
+    <div class="list card" id="profile-card21">
       <ion-item class="item-avatar balanced" id="profile-list-item13">
            <img src="{{ProfilePicture}}" style="border:1px solid white;border-radius:50%;display: block; width: 50%; height: auto; margin-left: auto; margin-right: auto;">
           <h2balanced>{{FirstName}} {{LastName}}
           <p>{{Username}}</p>
         </h2balanced>
       </ion-item>
+      <form id="profile-form8" class="list">
+        <ion-toggle toggle-class="toggle-positive" id="profile-toggle6">share my location</ion-toggle>
+      </form>
     </div>
     <div class="spacer" style="width: 300px; height: 17px;"></div>
-    <h4 id="profile-heading5" style="color:#000000;text-align:center;">Points</h4>
     <ion-list id="profile-list6">
-      <ion-item class="item-icon-left" id="profile-list-item11">
-        <i class="icon ion-android-star-outline"></i>{{Points}}</ion-item>
+      <ion-item class="item-icon-left dark" id="profile-list-item11">
+        <i class="icon ion-android-star-outline"></i>{{Points}}
+        <span class="item-note">points</span>
+      </ion-item>
     </ion-list>
+    <div class="spacer" style="width: 300px; height: 17px;"></div>
     <h4 id="profile-heading6" style="color:#000000;text-align:center;">Ranking</h4>
     <ion-list id="profile-list7">
-      <ion-item class="item-icon-left" id="profile-list-item12">
-        <i class="icon ion-connection-bars"></i>{{Rank}}</ion-item>
+      <ion-item class="item-icon-left dark" id="profile-list-item12" ui-sref="tabsController.leaderboard">
+        <i class="icon ion-ribbon-a"></i>{{Rank}}</ion-item>
     </ion-list>
+    <div class="spacer" style="width: 300px; height: 17px;"></div>
   </ion-content>
 </ion-view>
