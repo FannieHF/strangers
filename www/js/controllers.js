@@ -60,7 +60,7 @@ function ($scope, $stateParams) {
 .controller('missionCompleteCtrl', ['$scope','$timeout','$window','$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope,$timeout, $window,$stateParams) {//10 seconds delay
+function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
     $timeout( function(){
         alert("Dave");
         $window.location.href = '#/main/home';
@@ -92,16 +92,44 @@ function ($scope, $stateParams) {
 function ($scope,$stateParams) {
 	alert('profileCtrl');
 
-	var user = firebase.auth().currentUser;
-	var name, email, photoUrl, uid, emailVerified;
+	// // Get user id
+	// var user = firebase.auth().currentUser;
+	$scope.uid = 'UkwyGH8cDCQZHHyqGi2Z9tYGBSX2';
 
-	if (user != null) {
-	  $scope.name = user.displayName;
-	  $scope.email = user.email;
-	  $scope.photoUrl = user.photoURL;
-	  $scope.emailVerified = user.emailVerified;
-	  $scope.uid = user.uid;
-	}
+	// Get a reference to the database service
+	var database = firebase.database();
+
+	// Get user profile info
+	var FirstName = firebase.database().ref('users/' + $scope.uid + '/FirstName');
+	FirstName.on('value', function(snapshot) {
+		$scope.FirstName = snapshot.val();
+	});
+
+	var LastName = firebase.database().ref('users/' + $scope.uid + '/LastName');
+	LastName.on('value', function(snapshot) {
+		$scope.LastName = snapshot.val();
+	});
+
+	var Username = firebase.database().ref('users/' + $scope.uid + '/Username');
+	Username.on('value', function(snapshot) {
+		$scope.Username = snapshot.val();
+	});
+
+	var ProfilePicture = firebase.database().ref('users/' + $scope.uid + '/ProfilePicture');
+	ProfilePicture.on('value', function(snapshot) {
+		$scope.ProfilePicture = snapshot.val();
+	});
+
+	var Points = firebase.database().ref('users/' + $scope.uid + '/Points');
+	Points.on('value', function(snapshot) {
+		$scope.Points = snapshot.val();
+	});
+
+	var Rank = firebase.database().ref('users/' + $scope.uid + '/Rank');
+	Rank.on('value', function(snapshot) {
+		$scope.Rank = snapshot.val();
+	});
+
 }])
 
 .controller('friendRequestCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
