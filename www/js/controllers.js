@@ -81,12 +81,25 @@ function ($scope, $stateParams) {
 function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
 	alert('missionCompleteCtrl');
 
-	// $scope.uid = 'UkwyGH8cDCQZHHyqGi2Z9tYGBSX2';
-	// var prevScore = firebase.database().ref('users/' + $scope.uid + '/Points');
-	// var newScore = 
-	// var database = firebase.database();
+	var scoreObtained = 800; // will be some function later; 
 
-    $timeout( function(){
+	$scope.Score = scoreObtained;
+
+	var uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3'; //michael
+
+	var prevScore = 50;
+
+	var prevScoreLoc = firebase.database().ref('users/' + uid + '/Points');
+	prevScoreLoc.once('value', function(snapshot) {
+		prevScore = snapshot.val();
+		var newScore = prevScore + scoreObtained;
+		var updates = {};
+	    updates['users/' + uid + '/Points'] = newScore;
+
+	    firebase.database().ref().update(updates);
+	});
+    
+	$timeout( function(){
         $window.location.href = '#/friendRequest';
     }, 8000)
 }])
@@ -103,9 +116,8 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	if($scope.username != null){
-	    alert('homeCtrl');
-	}
+	alert('homeCtrl');
+	
 
 }])
    
@@ -118,7 +130,7 @@ function ($scope,$stateParams) {
 
 	// // Get user id
 	// var user = firebase.auth().currentUser;
-	$scope.uid = 'UkwyGH8cDCQZHHyqGi2Z9tYGBSX2';
+	$scope.uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3'; //michael
 
 	// Get a reference to the database service
 	var database = firebase.database();
