@@ -1,0 +1,15 @@
+<ion-view title="Mission Complete" id="missionComplete" style="">
+  <ion-content padding="true" class="has-header">
+    <h1 id="missionComplete-heading3" style="color: rgb(0, 0, 0);">Mission Complete</h1>
+  </ion-content>
+</ion-view>
+
+<script>
+app.controller('SeeYouSoonCtrl', function($scope, $location, $timeout) {
+
+    $timeout(function() {
+      $location.path('#/main/home');
+      }, 3000);
+
+    });
+</script>
