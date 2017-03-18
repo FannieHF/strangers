@@ -1,13 +1,39 @@
 angular.module('app.controllers', ['cordovaGeolocationModule'])
 
      
-.controller('menuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('menuCtrl', function ($scope, $stateParams, cordovaGeolocationService) {
 
+    //Every minute store new user location
+    var flag = true;
 
-}])
+    while(flag) {
+        flag = false;
+        $timeout( function(){
+                
+                $scope.getCurrentPosition = function () {
+                    cordovaGeolocationService.getCurrentPosition(successHandler);
+                };
+                var successHandler = function (position) {
+                    $scope.currentPosition = position;
+                    var latitude = position.coords.latitude;
+                    $scope.latitude = latitude;
+                    var longitude = position.coords.longitude;
+                    $scope.longitude = longitude;
+                    var timestamp = position.timestamp;
+                };
+
+                var uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3'; //michael
+
+                var updates = {};
+                updates['users/' + uid + '/Lat'] = $scope.latitude;
+                updates['users/' + uid + '/Long'] = $scope.longitude;
+
+                firebase.database().ref().update(updates);
+                flag = true;
+        }, 5000)
+    }
+
+})
    
 .controller('helloWorldCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -109,20 +135,19 @@ function ($scope, $stateParams, $window) {
 
     $scope.login = function(){
       
-      $window.location.href = '#/main/home';
-//        firebase.auth().signInWithEmailAndPassword($scope.data.Email, $scope.data.Password)
-//        .then(function(firebaseUser){
-//            $window.location.href = '#/main/home';
-//        })
-//        .catch(function(error) {
-//        // Handle Errors here.
-//            alert(error.code);
-//            $window.location.href = '#/main/login';
-//        });
+       firebase.auth().signInWithEmailAndPassword($scope.data.Email, $scope.data.Password)
+       .then(function(firebaseUser){
+           $window.location.href = '#/main/home';
+       })
+       .catch(function(error) {
+       // Handle Errors here.
+           alert(error.code);
+           $window.location.href = '#/main/login';
+       });
     }
 }])
 
-.controller('homeCtrl', function ($scope,$stateParams, cordovaGeolocationService) {
+.controller('homeCtrl', function ($scope, $stateParams, cordovaGeolocationService) {
         $scope.getCurrentPosition = function () {
         cordovaGeolocationService.getCurrentPosition(successHandler);
     };
