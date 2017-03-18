@@ -111,7 +111,16 @@ angular.module('app.routes', [])
       }
     }
   })
-
+  
+.state('tabsController.search', {
+    url: '/search',
+    views: {
+      'tab3': {
+        templateUrl: 'templates/search.html',
+        controller: 'searchCtrl'
+      }
+    }
+  })
 
 $urlRouterProvider.otherwise('/index')
 

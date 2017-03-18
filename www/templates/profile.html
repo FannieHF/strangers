@@ -1,4 +1,4 @@
-<ion-view title="Profile" id="Profile" style="">
+<ion-view title="Profile" id="profile" style="">
     
   <ion-content padding="true" class="has-header">
     <div class="list card" id="profile-card21" ng-controller="profileCtrl">
@@ -20,10 +20,11 @@
       </ion-item>
     </ion-list>
     <div class="spacer" style="width: 300px; height: 17px;"></div>
-    <h4 id="profile-heading6" style="color:#000000;text-align:center;">Ranking</h4>
+    <h4 id="profile-heading6" style="color:#000000;text-align:center;">Friends</h4>
     <ion-list id="profile-list7" ui-sref="tabsController.leaderboard">
       <ion-item class="item-icon-left dark" id="profile-list-item12" ui-sref="tabsController.leaderboard">
-        <i class="icon ion-ribbon-a"></i>{{Rank}}</ion-item>
+        <i class="icon ion-ribbon-a"></i>Friend List</ion-item>
     </ion-list>
+    <a id="login-button9" class="button button-stable  button-block" style="background-color:green;color:white" ng-click="logout()">Log out</a>
   </ion-content>
 </ion-view>
