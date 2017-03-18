@@ -4,7 +4,7 @@ angular.module('app.controllers', [])
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
+	
 
 }])
    
@@ -12,7 +12,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
+	
 
 }])
    
@@ -20,8 +20,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
-
+	
 
 }])
    
@@ -30,6 +29,7 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
+
 	// // Get user id
 	// var user = firebase.auth().currentUser;
 	$scope.uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3';
@@ -37,6 +37,7 @@ function ($scope, $stateParams) {
 	// if (user != null) {
 	//   $scope.uid = user;
 	// }
+
 
 	// Get a reference to the database service
 	var database = firebase.database();
@@ -53,7 +54,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
+	
 
 }])
    
@@ -61,7 +62,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
+	
 
 }])
    
@@ -69,7 +70,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
+	
 
 }])
    
@@ -77,7 +78,27 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
-    $timeout( function(){
+	
+
+	var scoreObtained = 800; // will be some function later; 
+
+	$scope.Score = scoreObtained;
+
+	var uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3'; //michael
+
+	var prevScore = 50;
+
+	var prevScoreLoc = firebase.database().ref('users/' + uid + '/Points');
+	prevScoreLoc.once('value', function(snapshot) {
+		prevScore = snapshot.val();
+		var newScore = prevScore + scoreObtained;
+		var updates = {};
+	    updates['users/' + uid + '/Points'] = newScore;
+
+	    firebase.database().ref().update(updates);
+	});
+    
+	$timeout( function(){
         $window.location.href = '#/friendRequest';
     }, 8000)
 }])
@@ -85,6 +106,7 @@ function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
 .controller('loginCtrl', ['$scope', '$window','$stateParams'// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
+<<<<<<< HEAD
 function ($scope, $window, $stateParams) {
 	 $scope.validationEvent = function(){
 	 	// '$scope.data.username'
@@ -111,13 +133,19 @@ function ($scope, $window, $stateParams) {
 	// //   console.log("Logged out");
 	// // }
 }
+=======
+
+function ($scope, $stateParams) {
+	
+>>>>>>> origin/backend
 }])
    
 .controller('homeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-    
+	
+	
 
 }])
    
@@ -126,14 +154,11 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope,$stateParams) {
+	
 
 	// // Get user id
 	// var user = firebase.auth().currentUser;
-	$scope.uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3';
-
-	// if (user != null) {
-	//   $scope.uid = user;
-	// }
+	$scope.uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3'; //michael
 
 	// Get a reference to the database service
 	var database = firebase.database();
@@ -175,14 +200,14 @@ function ($scope,$stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
+	
 }])
    
 .controller('resourceCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
+	
 
 }])
  

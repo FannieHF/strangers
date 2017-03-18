@@ -1,0 +1,28 @@
+{
+	"items": {
+		"-KfUuSecv_BU1MUvoros": {
+			"name": "Pie"
+		},
+		"-KfUuVftYPYaejWqLzzR": {
+			"name": "I love u"
+		}
+	},
+	"users": {
+		"4D5cqPZOkBROEXxOTAjEOxhkr6C3": {
+			"FirstName": "Michael",
+			"LastName": "Marshall",
+			"Points": 0,
+			"Rank": 999,
+			"Username": "MnM",
+			"ProfilePicture": "fileID1"
+		},
+		"UkwyGH8cDCQZHHyqGi2Z9tYGBSX2": {
+			"FirstName": "Marvin",
+			"LastName": "Lai",
+			"Points": 9001,
+			"Rank": 1,
+			"Username": "MDL",
+			"ProfilePicture": "fileID2"
+		}
+	}
+}
