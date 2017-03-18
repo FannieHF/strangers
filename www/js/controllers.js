@@ -1,148 +1,119 @@
-angular.module('app.controllers', [])
-     
-.controller('menuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+angular.module('app.routes', [])
 
+.config(function($stateProvider, $urlRouterProvider) {
 
-}])
-   
-.controller('helloWorldCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
-   
-.controller('signUpCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-
-}])
-   
-.controller('newChallengeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
-   
-.controller('missionCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
-   
-.controller('leaderboardCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
-   
-.controller('pageCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
-   
-.controller('missionCompleteCtrl', ['$scope','$timeout','$window','$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
-    $timeout( function(){
-        $window.location.href = '#/friendRequest';
-    }, 2000)
-}])
-
-.controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-}])
-   
-.controller('homeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+  $stateProvider
     
+ .state('tabsController', {
+    url: '/main',
+    templateUrl: 'templates/tabsController.html',
+    abstract:true
+  })
 
-}])
-   
+  .state('helloWorld', {
+    url: '/index',
+    templateUrl: 'templates/helloWorld.html',
+    controller: 'helloWorldCtrl'
+  })
 
-.controller('profileCtrl', ['$scope','$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope,$stateParams) {
+  .state('signUp', {
+    url: '/signup',
+    templateUrl: 'templates/signUp.html',
+    controller: 'signUpCtrl'
+  })
 
-	// // Get user id
-	// var user = firebase.auth().currentUser;
-	$scope.uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3';
+  .state('tabsController.newChallenge', {
+    url: '/newChallenge',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/newChallenge.html',
+        controller: 'newChallengeCtrl'
+      }
+    }
+  })
 
-	// if (user != null) {
-	//   $scope.uid = user;
-	// }
+  .state('tabsController.mission', {
+    url: '/mission',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/mission.html',
+        controller: 'missionCtrl'
+      }
+    }
+  })
 
-	// Get a reference to the database service
-	var database = firebase.database();
+  .state('tabsController.leaderboard', {
+    url: '/leader',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/leaderboard.html',
+        controller: 'leaderboardCtrl'
+      }
+    }
+  })
 
-	// Get user profile info
-	var FirstName = firebase.database().ref('users/' + $scope.uid + '/FirstName');
-	FirstName.on('value', function(snapshot) {
-		$scope.FirstName = snapshot.val();
-	});
+  .state('tabsController.missionComplete', {
+    url: '/missionComplete',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/missionComplete.html',
+        controller: 'missionCompleteCtrl'
+      }
+    }
+  })
 
-	var LastName = firebase.database().ref('users/' + $scope.uid + '/LastName');
-	LastName.on('value', function(snapshot) {
-		$scope.LastName = snapshot.val();
-	});
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+  })
 
-	var Username = firebase.database().ref('users/' + $scope.uid + '/Username');
-	Username.on('value', function(snapshot) {
-		$scope.Username = snapshot.val();
-	});
+  .state('tabsController.home', {
+    url: '/home',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/home.html',
+        controller: 'homeCtrl'
+      }
+    }
+  })
+  
+  .state('tabsController.profile', {
+    url: '/profile',
+    views: {
+      'tab1': {
+        templateUrl: 'templates/profile.html',
+        controller: 'profileCtrl'
+      }
+    }
+  })
+  
+  .state('tabsController.friendRequest', {
+    url: '/friendRequest',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/friendRequest.html',
+        controller: 'friendRequestCtrl'
+      }
+    }
+  })
+  
+.state('tabsController.friends', {
+    url: '/friends',
+    views: {
+      'tab3': {
+        templateUrl: 'templates/friends.html',
+        controller: 'friendCtrl'
+      }
+    }
+  })
 
-	var ProfilePicture = firebase.database().ref('users/' + $scope.uid + '/ProfilePicture');
-	ProfilePicture.on('value', function(snapshot) {
-		$scope.ProfilePicture = snapshot.val();
-	});
+$urlRouterProvider.otherwise('/index')
 
-	var Points = firebase.database().ref('users/' + $scope.uid + '/Points');
-	Points.on('value', function(snapshot) {
-		$scope.Points = snapshot.val();
-	});
+  
 
-	var Rank = firebase.database().ref('users/' + $scope.uid + '/Rank');
-	Rank.on('value', function(snapshot) {
-		$scope.Rank = snapshot.val();
-	});
-
-}])
-
-.controller('friendRequestCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-}])
-   
-.controller('resourceCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
- 
+});
