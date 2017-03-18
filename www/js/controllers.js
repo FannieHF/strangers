@@ -106,7 +106,8 @@ function ($scope,$timeout, $window,$stateParams) {
 
     $scope.Score = scoreObtained;
 
-    var uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3'; //michael
+	var user = firebase.auth().currentUser;
+   	var uid = user.uid;
 
     var prevScore = 50;
 
@@ -165,9 +166,16 @@ function ($scope, $stateParams, $window) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope,$stateParams) {
    
-    // // Get user id
-    // var user = firebase.auth().currentUser;
-    $scope.uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3'; //michael
+   	// firebase.auth().onAuthStateChanged(function(login){
+   	// 	if(login){
+   	// 		var user = firebase.auth().currentUser;
+   	// 		$scope.uid = user.uid;
+   	// 	}
+   	// });
+
+    var user = firebase.auth().currentUser;
+   	$scope.uid = user.uid;
+	
 
     // Get a reference to the database service
     var database = firebase.database();
@@ -202,6 +210,20 @@ function ($scope,$stateParams) {
     Rank.on('value', function(snapshot) {
         $scope.Rank = snapshot.val();
     });
+
+    $scope.logout = function(){
+      
+       firebase.auth().signOut()
+       .then(function(){
+           alert("You've been logged out " + $scope.uid);
+           $window.location.href = '#/main/login';
+       })
+       .catch(function(error) {
+       // Handle Errors here.
+           alert("failed to logout" + error.code);
+           $window.location.href = '#/main/login';
+       });
+    }
     
 }])
 
