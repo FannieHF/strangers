@@ -51,7 +51,7 @@ angular.module('app.routes', [])
   .state('tabsController.leaderboard', {
     url: '/leader',
     views: {
-      'tab3': {
+      'tab2': {
         templateUrl: 'templates/leaderboard.html',
         controller: 'leaderboardCtrl'
       }
@@ -99,11 +99,25 @@ angular.module('app.routes', [])
       }
     }
   })
-
-  .state('friendRequest', {
-    url: '/page21',
-    templateUrl: 'templates/friendRequest.html',
-    controller: 'friendRequestCtrl'
+  
+  .state('tabsController.friendRequest', {
+    url: '/missionComplete',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/friendRequest.html',
+        controller: 'friendRequestCtrl'
+      }
+    }
+  })
+  
+.state('tabsController.friends', {
+    url: '/friends',
+    views: {
+      'tab3': {
+        templateUrl: 'templates/friends.html',
+        controller: 'friendCtrl'
+      }
+    }
   })
 
   .state('resource', {
