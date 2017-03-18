@@ -1,119 +1,106 @@
-angular.module('app.routes', [])
+angular.module('app.controllers', [])
+     
+.controller('menuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
 
-.config(function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
+}])
+   
+.controller('helloWorldCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+   
+.controller('signUpCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+   
+.controller('newChallengeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+   
+.controller('missionCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+   
+.controller('leaderboardCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+   
+.controller('pageCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+   
+.controller('missionCompleteCtrl', ['$scope','$timeout','$window','$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope,$timeout, $window,$stateParams) {//10 seconds delay
+    $timeout( function(){
+        $window.location.href='#/main/friendRequest';
+    }, 2000)
+}])
+
+.controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+}])
+   
+.controller('homeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
     
- .state('tabsController', {
-    url: '/main',
-    templateUrl: 'templates/tabsController.html',
-    abstract:true
-  })
 
-  .state('helloWorld', {
-    url: '/index',
-    templateUrl: 'templates/helloWorld.html',
-    controller: 'helloWorldCtrl'
-  })
+}])
+   
+.controller('profileCtrl', ['$scope','$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope,$stateParams) {
+    $scope.firstname = "Dave";
+    $scope.lastname = "Snave";
+}])
 
-  .state('signUp', {
-    url: '/signup',
-    templateUrl: 'templates/signUp.html',
-    controller: 'signUpCtrl'
-  })
 
-  .state('tabsController.newChallenge', {
-    url: '/newChallenge',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/newChallenge.html',
-        controller: 'newChallengeCtrl'
-      }
-    }
-  })
+.controller('friendRequestCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
 
-  .state('tabsController.mission', {
-    url: '/mission',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/mission.html',
-        controller: 'missionCtrl'
-      }
-    }
-  })
+}])
+   
+.controller('resourceCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
 
-  .state('tabsController.leaderboard', {
-    url: '/leader',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/leaderboard.html',
-        controller: 'leaderboardCtrl'
-      }
-    }
-  })
 
-  .state('tabsController.missionComplete', {
-    url: '/missionComplete',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/missionComplete.html',
-        controller: 'missionCompleteCtrl'
-      }
-    }
-  })
-
-  .state('login', {
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'loginCtrl'
-  })
-
-  .state('tabsController.home', {
-    url: '/home',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/home.html',
-        controller: 'homeCtrl'
-      }
-    }
-  })
-  
-  .state('tabsController.profile', {
-    url: '/profile',
-    views: {
-      'tab1': {
-        templateUrl: 'templates/profile.html',
-        controller: 'profileCtrl'
-      }
-    }
-  })
-  
-  .state('tabsController.friendRequest', {
-    url: '/friendRequest',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/friendRequest.html',
-        controller: 'friendRequestCtrl'
-      }
-    }
-  })
-  
-.state('tabsController.friends', {
-    url: '/friends',
-    views: {
-      'tab3': {
-        templateUrl: 'templates/friends.html',
-        controller: 'friendCtrl'
-      }
-    }
-  })
-
-$urlRouterProvider.otherwise('/index')
-
-  
-
-});
+}])
+ 
