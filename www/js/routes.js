@@ -8,6 +8,8 @@ angular.module('app.routes', [])
   // Each state's controller can be found in controllers.js
   $stateProvider
     
+  
+
  .state('tabsController', {
     url: '/main',
     templateUrl: 'templates/tabsController.html',
@@ -56,6 +58,12 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('page', {
+    url: '/page13',
+    templateUrl: 'templates/page.html',
+    controller: 'pageCtrl'
+  })
+
   .state('tabsController.missionComplete', {
     url: '/missionComplete',
     views: {
@@ -93,7 +101,7 @@ angular.module('app.routes', [])
   })
   
   .state('tabsController.friendRequest', {
-    url: '/friendRequest',
+    url: '/missionComplete',
     views: {
       'tab2': {
         templateUrl: 'templates/friendRequest.html',
@@ -111,15 +119,11 @@ angular.module('app.routes', [])
       }
     }
   })
-  
-.state('tabsController.search', {
-    url: '/search',
-    views: {
-      'tab3': {
-        templateUrl: 'templates/search.html',
-        controller: 'searchCtrl'
-      }
-    }
+
+  .state('resource', {
+    url: '/page22',
+    templateUrl: 'templates/resource.html',
+    controller: 'resourceCtrl'
   })
 
 $urlRouterProvider.otherwise('/index')
