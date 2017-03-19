@@ -171,7 +171,7 @@ function ($scope, $stateParams, $window, shareUser2ID) {
         else if(result == 'Decline') {
             updates['users/' + uid + '/Status'] = 'Ready';
             firebase.database().ref().update(updates);
-            $window.location.href = '#/declined'; //________________USE DECLINED PAGE
+            $window.location.href = '#/challengeDeclined';
         }
     });
     if(stoplimit > 0) {
@@ -187,7 +187,7 @@ function ($scope, $stateParams, $window, shareUser2ID) {
     // On timeout, go to declined page and return to Ready
     updates['users/' + uid + '/Status'] = 'Ready';
     firebase.database().ref().update(updates);
-    $window.location.href = '#/declined';
+    $window.location.href = '#/challengeDeclined';
 
 }])
    
@@ -203,9 +203,9 @@ function ($scope, $stateParams) {
 
    	var user2 = uid2;
 
-   	if(uid2 == user2ID.getU2ID()){
-   		$window.location.href = '#/main/missionComplete';
-   	}
+   	// if(uid2 == user2ID.getU2ID()){
+   	// 	$window.location.href = '#/main/missionComplete';
+   	// }
 
    	// if uid1 = toucher.uid2, award points
 
