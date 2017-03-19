@@ -17,7 +17,7 @@ angular.module('app.controllers', ['cordovaGeolocationModule'])
                 // Checks if the user is ready or in a game
                 var Status = firebase.database().ref('users/' + uid + '/Status');
                 Status.once('value', function(snapshot) {
-                    $scope.Status = snapshot.val();
+                    $scope.safeApply($scope.Status = snapshot.val());
                 });
 
                 if($scope.Status == 'Ready') {
@@ -134,19 +134,19 @@ function ($scope, $stateParams, $window, shareUser2ID) {
 
     // Get user id
     var user = firebase.auth().currentUser;
-    var uid = user.uid;
+    $scope.uid = user.uid;
 
     // Get user status info
-    var Status = firebase.database().ref('users/' + uid + '/Status');
+    var Status = firebase.database().ref('users/' + $scope.uid + '/Status');
     Status.once('value', function(snapshot) {
-        $scope.Status = snapshot.val();
+        $scope.safeApply($scope.Status = snapshot.val());
     });
 
     // Get user2 id
     var uid2 = shareUser2ID.getUser2ID();
 
     // Get user2 status
-    var Status2 = firebase.database().ref('users/' + uid + '/Status');
+    var Status2 = firebase.database().ref('users/' + $scope.uid + '/Status');
     Status2.once('value', function(snapshot) {
         $scope.safeApply($scope.Status2 = snapshot.val());
     });
@@ -169,7 +169,7 @@ function ($scope, $stateParams, $window, shareUser2ID) {
 
         // User2 declines, declined page appears and return to Ready
         else if(result == 'Decline') {
-            updates['users/' + uid + '/Status'] = 'Ready';
+            updates['users/' + $scope.uid + '/Status'] = 'Ready';
             firebase.database().ref().update(updates);
             $window.location.href = '#/challengeDeclined';
         }
@@ -185,7 +185,7 @@ function ($scope, $stateParams, $window, shareUser2ID) {
     }
 
     // On timeout, go to declined page and return to Ready
-    updates['users/' + uid + '/Status'] = 'Ready';
+    updates['users/' + $scope.uid + '/Status'] = 'Ready';
     firebase.database().ref().update(updates);
     $window.location.href = '#/challengeDeclined';
 
