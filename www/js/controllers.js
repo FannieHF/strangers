@@ -1,36 +1,99 @@
 angular.module('app.controllers', ['cordovaGeolocationModule'])
 
      
-.controller('menuCtrl', function ($scope, $stateParams, cordovaGeolocationService) {
+.controller('menuCtrl', function ($scope, $stateParams, $window, shareUser2ID, cordovaGeolocationService) {
 
-    //Every minute store new user location
+    //Every 10 secs store new user location and search for/challenge nearby users
     var flag = true;
 
-    while(flag) {
-        flag = false;
-        $timeout( function(){
+    while(true) {
+        if(flag == true) {
+            flag = false;
+            $timeout( function(){
                 
-                $scope.getCurrentPosition = function () {
-                    cordovaGeolocationService.getCurrentPosition(successHandler);
-                };
-                var successHandler = function (position) {
-                    $scope.currentPosition = position;
-                    var latitude = position.coords.latitude;
-                    $scope.latitude = latitude;
-                    var longitude = position.coords.longitude;
-                    $scope.longitude = longitude;
-                    var timestamp = position.timestamp;
-                };
+                var user = firebase.auth().currentUser;
+                var uid = user.uid;
 
-                var uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3'; //michael
+                // Checks if the user is ready or in a game
+                var Status = firebase.database().ref('users/' + uid + '/Status');
+                Status.once('value', function(snapshot) {
+                    $scope.Status = snapshot.val();
+                });
 
-                var updates = {};
-                updates['users/' + uid + '/Lat'] = $scope.latitude;
-                updates['users/' + uid + '/Long'] = $scope.longitude;
+                if($scope.Status == 'Ready') {
+                    
+                    // Updates user locations
+                    $scope.getCurrentPosition = function () {
+                        cordovaGeolocationService.getCurrentPosition(successHandler);
+                    };
+                    var successHandler = function (position) {
+                        $scope.currentPosition = position;
+                        var latitude = position.coords.latitude;
+                        $scope.latitude = latitude;
+                        var longitude = position.coords.longitude;
+                        $scope.longitude = longitude;
+                        var timestamp = position.timestamp;
+                        $scope.timestamp = timestamp;
+                    };
 
-                firebase.database().ref().update(updates);
+                    var updates = {};
+                    updates['users/' + uid + '/Lat'] = $scope.latitude;
+                    updates['users/' + uid + '/Long'] = $scope.longitude;
+
+                    // Makes the array of users
+                    var ref = firebase.database().ref('users');
+                    var users = $firebaseArray(ref);
+
+                    users.$loaded()
+                    .then(function(){
+                        angular.forEach(users, function(user2) {
+                            
+                            // Get user2 location
+                            var uid2 = user2.uid;
+
+                            var Lat2 = firebase.database().ref('users/' + uid2 + '/Lat');
+                            Lat2.once('value', function(snapshot) {
+                                $scope.Lat2 = snapshot.val();
+                            });
+
+                            var Long2 = firebase.database().ref('users/' + uid2 + '/Long');
+                            Long2.once('value', function(snapshot) {
+                                $scope.Long2 = snapshot.val();
+                            });
+
+                            // Finds a nearby valid user
+                            var distance = Math.sqrt(Math.pow($scope.latitude - $scope.Lat2, 2) + Math.pow($scope.longitude - $scope.Long2, 2))
+                            if(distance < 0.001 && uid != uid2) {
+
+                                var x = Math.floor((Math.random() * 2) + 1);
+
+                                // Assigns each user a random role
+                                if(x==1) {
+                                    updates['users/' + uid + '/Status'] = 'Detective';
+                                    updates['users/' + uid2 + '/Status'] = 'Performer';
+                                } else {
+                                    updates['users/' + uid + '/Status'] = 'Performer';
+                                    updates['users/' + uid2 + '/Status'] = 'Detective';
+                                }
+
+                                shareUser2ID.setUser2ID(uid2);
+
+                                // Stops looking for nearby users
+                                break;
+                            }
+                        })
+                    });
+
+                    firebase.database().ref().update(updates);
+
+                } else {
+                    $window.location.href = '#/newChallenge';
+                }
+
                 flag = true;
-        }, 5000)
+
+            }, 10000)
+        }
     }
 
 })
@@ -51,28 +114,69 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('newChallengeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('newChallengeCtrl', ['$scope', '$stateParams', '$window', 'shareUser2ID', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $stateParams, $window, shareUser2ID) {
 
-    // // Get user id
-    // var user = firebase.auth().currentUser;
-    $scope.uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3';
+    var stoplimit = 10;
 
-    // if (user != null) {
-    //   $scope.uid = user;
-    // }
+    // Get user id
+    var user = firebase.auth().currentUser;
+    var uid = user.uid;
 
-
-    // Get a reference to the database service
-    var database = firebase.database();
-
-    // Get user profile info
-    var Points = firebase.database().ref('users/' + $scope.uid + '/Points');
-    Points.on('value', function(snapshot) {
-        $scope.Points = snapshot.val();
+    // Get user status info
+    var Status = firebase.database().ref('users/' + $scope.uid + '/Status');
+    Status.once('value', function(snapshot) {
+        $scope.Status = snapshot.val();
     });
+
+    // Get user2 id
+    var uid2 = shareUser2ID.getUser2ID();
+
+    // Get user2 status
+    var Status2 = firebase.database().ref('users/' + $scope.uid + '/Status');
+    Status2.once('value', function(snapshot) {
+        $scope.Status2 = snapshot.val();
+    });
+
+    // Refreshes user2 invite-status and times out after 10 seconds
+    function refreshStuff() {
+    console.log('doing le refresh');
+    shareUser2ID.refreshUser2Invite().then(function(result) {
+        console.log('success ' + result);
+        
+        // User2 accepts, enter game
+        if(result == 'Accept') {
+            if($scope.Status == 'Detective') {
+                $window.location.href = '#/mission';
+            }
+            else {
+                $window.location.href = '#/mission2';
+            }
+        }
+
+        // User2 declines, declined page appears and return to Ready
+        else if(result == 'Decline') {
+            updates['users/' + uid + '/Status'] = 'Ready';
+            firebase.database().ref().update(updates);
+            $window.location.href = '#/declined'; //____________USE DECLINED PAGE
+        }
+    });
+    if(stoplimit > 0) {
+        $timeout(refreshStuff(), 1000);
+    }
+    stoplimit = stoplimit - 1;
+    }
+    // Waits for user2 to accept invite
+    $scope.accept = function(){
+        refreshStuff();
+    }
+
+    // On timeout, go to declined page and return to Ready
+    updates['users/' + uid + '/Status'] = 'Ready';
+    firebase.database().ref().update(updates);
+    $window.location.href = '#/declined';
 
 }])
    
@@ -100,7 +204,7 @@ function ($scope, $stateParams) {
 .controller('missionCompleteCtrl', ['$scope','$timeout','$window','$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope,$timeout, $window,$stateParams) {
+function ($scope,$timeout, $window, $stateParams) {
     
     var scoreObtained = 800; // will be some function later; 
 
