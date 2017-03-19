@@ -6,7 +6,6 @@ angular.module('app.services', [])
 
 .service('shareUser2ID', [function($q){
     
-    var listeners = [];
     var user2ID = '';
 
         return {
@@ -15,10 +14,7 @@ angular.module('app.services', [])
             },
             setUser2ID: function(value) {
                 user2ID = value;
-            }
-            registerlistener: function(listener) {
-            	listeners.push(listener);
-            }
+            },
             refreshUser2Invite: function() {
 
             	var deferred = $q.defer();
