@@ -1,35 +1,22 @@
 {
   "global" : {
-    "TotalInteractions" : 1,
     "TotalPlayers" : 2
-  },
-  "interactions" : {
-    "1" : {
-      "p1" : "4D5cqPZOkBROEXxOTAjEOxhkr6C3",
-      "p2" : "UkwyGH8cDCQZHHyqGi2Z9tYGBSX2"
-    }
   },
   "users" : {
     "4D5cqPZOkBROEXxOTAjEOxhkr6C3" : {
       "FirstName" : "Michael",
       "LastName" : "Marshall",
-      "Lat" : 0.0,
-      "Long" : 0.0,
-      "Points" : 20824,
+      "Points" : 13624,
       "ProfilePicture" : "https://firebasestorage.googleapis.com/v0/b/strangers-7479e.appspot.com/o/250px-010Caterpie.png?alt=media&token=ed31eb7d-edeb-4f35-8ee2-3a3fcca5c719",
       "Rank" : 2,
-      "Status" : "Ready",
       "Username" : "MnM"
     },
     "UkwyGH8cDCQZHHyqGi2Z9tYGBSX2" : {
       "FirstName" : "Marvin",
       "LastName" : "Lai",
-      "Lat" : 0.0,
-      "Long" : 0.0,
-      "Points" : 4121,
+      "Points" : 921,
       "ProfilePicture" : "https://firebasestorage.googleapis.com/v0/b/strangers-7479e.appspot.com/o/ss%20(2017-02-05%20at%2004.31.08).jpg?alt=media&token=1dd48546-df33-494b-b00c-c1240baeb035",
       "Rank" : 1,
-      "Status" : "Ready",
       "Username" : "MDL"
     }
   }
