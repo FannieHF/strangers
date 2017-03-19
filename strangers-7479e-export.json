@@ -14,10 +14,14 @@
     "4D5cqPZOkBROEXxOTAjEOxhkr6C3" : {
       "FirstName" : "Michael",
       "LastName" : "Marshall",
-      "Points" : 8824,
+
+      "Points" : 13624,
       "ProfilePicture" : "https://firebasestorage.googleapis.com/v0/b/strangers-7479e.appspot.com/o/250px-010Caterpie.png?alt=media&token=ed31eb7d-edeb-4f35-8ee2-3a3fcca5c719",
       "Rank" : 2,
-      "Username" : "MnM"
+      "Username" : "MnM",
+	  "Lat" : 0.0,
+	  "Long" : 0.0
+	  
     },
     "UkwyGH8cDCQZHHyqGi2Z9tYGBSX2" : {
       "FirstName" : "Marvin",
@@ -25,7 +29,10 @@
       "Points" : 921,
       "ProfilePicture" : "https://firebasestorage.googleapis.com/v0/b/strangers-7479e.appspot.com/o/ss%20(2017-02-05%20at%2004.31.08).jpg?alt=media&token=1dd48546-df33-494b-b00c-c1240baeb035",
       "Rank" : 1,
-      "Username" : "MDL"
+
+      "Username" : "MDL",
+	  "Lat" : 0.0,
+	  "Long" : 0.0
     }
   }
 }

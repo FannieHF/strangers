@@ -33,6 +33,7 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
+<<<<<<< HEAD
 
 	// // Get user id
 	// var user = firebase.auth().currentUser;
@@ -50,6 +51,25 @@ function ($scope, $stateParams) {
 	Points.on('value', function(snapshot) {
 		$scope.Points = snapshot.val();
 	});
+=======
+    // // Get user id
+    // var user = firebase.auth().currentUser;
+    $scope.uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3';
+
+    // if (user != null) {
+    //   $scope.uid = user;
+    // }
+
+
+    // Get a reference to the database service
+    var database = firebase.database();
+
+    // Get user profile info
+    var Points = firebase.database().ref('users/' + $scope.uid + '/Points');
+    Points.on('value', function(snapshot) {
+        $scope.Points = snapshot.val();
+    });
+>>>>>>> origin/location
 
 }])
    
@@ -57,8 +77,12 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
+<<<<<<< HEAD
 	
 
+=======
+    
+>>>>>>> origin/location
 }])
    
 .controller('leaderboardCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -89,7 +113,18 @@ function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
 
 	var uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3'; //michael
 
+<<<<<<< HEAD
 	var prevScore = 50;
+=======
+    var prevScore = 50;
+
+    var prevScoreLoc = firebase.database().ref('users/' + uid + '/Points');
+    prevScoreLoc.once('value', function(snapshot) {
+        prevScore = snapshot.val();
+        var newScore = prevScore + scoreObtained;
+        var updates = {};
+        updates['users/' + uid + '/Points'] = newScore;
+>>>>>>> origin/location
 
 	var prevScoreLoc = firebase.database().ref('users/' + uid + '/Points');
 	prevScoreLoc.once('value', function(snapshot) {
@@ -111,6 +146,7 @@ function ($scope, $timeout, $window, $stateParams) {//10 seconds delay
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 
 function ($scope, $stateParams, $window) {
+
 	$scope.data = {};
 
 	$scope.login = function(){
@@ -125,62 +161,92 @@ function ($scope, $stateParams, $window) {
 		});
 
 	}
+
 }])
    
 .controller('homeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-	
-	
 
-}])
+.controller('homeCtrl', function ($scope,$stateParams, cordovaGeolocationService) {
+        $scope.getCurrentPosition = function () {
+        cordovaGeolocationService.getCurrentPosition(successHandler);
+    };
+    var successHandler = function (position) {
+        $scope.currentPosition = position;
+        var latitude = position.coords.latitude;
+        $scope.latitude = latitude;
+        var longitude = position.coords.longitude;
+        var timestamp = position.timestamp;
+    };
+})
    
 
 .controller('profileCtrl', ['$scope','$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope,$stateParams) {
+
+   	// firebase.auth().onAuthStateChanged(function(login){
+   	// 	if(login){
+   	// 		var user = firebase.auth().currentUser;
+   	// 		$scope.uid = user.uid;
+   	// 	}
+   	// });
+
+    var user = firebase.auth().currentUser;
+   	$scope.uid = user.uid;
 	
 
-	// // Get user id
-	// var user = firebase.auth().currentUser;
-	$scope.uid = '4D5cqPZOkBROEXxOTAjEOxhkr6C3'; //michael
+    // Get a reference to the database service
+    var database = firebase.database();
 
-	// Get a reference to the database service
-	var database = firebase.database();
+    // Get user profile info
+    var FirstName = firebase.database().ref('users/' + $scope.uid + '/FirstName');
+    FirstName.on('value', function(snapshot) {
+        $scope.FirstName = snapshot.val();
+    });
 
-	// Get user profile info
-	var FirstName = firebase.database().ref('users/' + $scope.uid + '/FirstName');
-	FirstName.on('value', function(snapshot) {
-		$scope.FirstName = snapshot.val();
-	});
+    var LastName = firebase.database().ref('users/' + $scope.uid + '/LastName');
+    LastName.on('value', function(snapshot) {
+        $scope.LastName = snapshot.val();
+    });
 
-	var LastName = firebase.database().ref('users/' + $scope.uid + '/LastName');
-	LastName.on('value', function(snapshot) {
-		$scope.LastName = snapshot.val();
-	});
+    var Username = firebase.database().ref('users/' + $scope.uid + '/Username');
+    Username.on('value', function(snapshot) {
+        $scope.Username = snapshot.val();
+    });
 
-	var Username = firebase.database().ref('users/' + $scope.uid + '/Username');
-	Username.on('value', function(snapshot) {
-		$scope.Username = snapshot.val();
-	});
+    var ProfilePicture = firebase.database().ref('users/' + $scope.uid + '/ProfilePicture');
+    ProfilePicture.on('value', function(snapshot) {
+        $scope.ProfilePicture = snapshot.val();
+    });
 
-	var ProfilePicture = firebase.database().ref('users/' + $scope.uid + '/ProfilePicture');
-	ProfilePicture.on('value', function(snapshot) {
-		$scope.ProfilePicture = snapshot.val();
-	});
+    var Points = firebase.database().ref('users/' + $scope.uid + '/Points');
+    Points.on('value', function(snapshot) {
+        $scope.Points = snapshot.val();
+    });
 
-	var Points = firebase.database().ref('users/' + $scope.uid + '/Points');
-	Points.on('value', function(snapshot) {
-		$scope.Points = snapshot.val();
-	});
+    var Rank = firebase.database().ref('users/' + $scope.uid + '/Rank');
+    Rank.on('value', function(snapshot) {
+        $scope.Rank = snapshot.val();
+    });
 
-	var Rank = firebase.database().ref('users/' + $scope.uid + '/Rank');
-	Rank.on('value', function(snapshot) {
-		$scope.Rank = snapshot.val();
-	});
-
+    $scope.logout = function(){
+      
+       firebase.auth().signOut()
+       .then(function(){
+           alert("You've been logged out " + $scope.uid);
+           $window.location.href = '#/main/login';
+       })
+       .catch(function(error) {
+       // Handle Errors here.
+           alert("failed to logout" + error.code);
+           $window.location.href = '#/main/login';
+       });
+    }
+    
 }])
 
 .controller('friendRequestCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
